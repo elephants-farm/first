@@ -17,7 +17,8 @@
           .span3
             %h5= user.email
           .span3
-            %h5= user.online_at.in_time_zone(+2)
+            - if user.online_at
+              %h5= user.online_at.in_time_zone(+2)
 
           .span2
             edit
