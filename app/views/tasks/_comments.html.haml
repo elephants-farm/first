@@ -1,0 +1,19 @@
+/ ko if: $root.current_task().current_comment()
+
+%textarea{"data-bind" => "value: $root.current_task().current_comment().commentAttr.description"}
+%br
+
+= link_to 'send','#',class: 'btn',"data-bind"=>"click: $root.current_task().post_comment"
+%ul{"data-bind" => "foreach: $root.current_task().comments"}
+  %li
+    %h6
+
+      %img.img-circle{"data-bind"=> "attr: { src: author.avatar.mini }"}  
+      %span{"data-bind" => "text: author.name"}
+      %span{"data-bind" => "text: author.email"}
+
+    %p{"data-bind" => "text: commentAttr.title"}
+    %p{"data-bind" => "text: commentAttr.description"}
+
+
+/ /ko

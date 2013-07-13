@@ -1,0 +1,17 @@
+= render 'menus/settings', current_item: 'my_profile'
+.well
+  = link_to 'Edit', edit_user_profile_path(@user_profile), class: 'btn'
+  .row-fluid
+    .span6.offset1
+
+      = image_tag @user_profile.avatar.url(:standart)
+      
+      /= ff.file_field :
+     
+      %h5
+        Name:
+        = @user_profile.name
+      %h5
+        Surname:
+        = @user_profile.surname
+    .span6

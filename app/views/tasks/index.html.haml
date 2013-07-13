@@ -1,0 +1,61 @@
+/%link{rel: "stylesheet", href: "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" }
+/%script{src: "http://code.jquery.com/jquery-1.9.1.js"}
+/%script{src: "http://code.jquery.com/ui/1.10.3/jquery-ui.js"}
+#tasks
+  .navbar
+    .navbar-inner
+      .container
+        %ul.nav
+          %li= link_to "New task" ,'#', "data-bind" => "click: new_task"
+        %ul.nav.pull-right
+          %li.divider-vertical
+          .navbar-search
+            %input.search-query{:placeholder => "Task", :type => "text"}
+        %ul.nav.pull-right
+          %li= link_to 'My tasks', '#'
+  = render 'tags'
+  = render 'user_list'
+  
+  %div{"data-bind" => "template: { name: $root.task_state() }"}
+
+%script{:type => "text/html", :id => "task_index_template"}
+  /- if current_company.id == 1
+  = render 'index' 
+  /- else
+  /  = render 'index_old' 
+
+%script{:type => "text/html", :id => "task_edit_template"}
+  .well
+    %a.pull-right{href: "#", "data-bind" => "click: $root.index"} 
+      %span.icon-remove
+    = render 'edit' 
+
+%script{:type => "text/html", :id => "task_new_template"}
+  .well
+    %button.close{"aria-hidden" => "true", :type => "button", "data-bind" => "click: $root.index"} ×
+    = render 'new' 
+
+%script{:type => "text/html", :id => "task_show_template"}
+  .well
+    %a.pull-right{href: "#", "data-bind" => "click: $root.index"} 
+      %span.icon-remove
+    = render 'task' 
+
+:javascript
+  $(function(){
+    var project = #{current_project.to_builder.target!};
+    var manageTasksViewModel = new ManageTasksViewModel(project);
+    manageTasksViewModel.load_projects();
+    manageTasksViewModel.load_employees();
+    manageTasksViewModel.load_tasks();
+    manageTasksViewModel.load_tags();
+
+    ko.applyBindings(manageTasksViewModel,$('#tasks')[0]);
+    
+   
+    //window.setInterval(updatefunction, 1000 * 60); // 1 min
+    //function updatefunction() {     
+    //}
+  });  
+
+= render 'uploads/uploads_templates'

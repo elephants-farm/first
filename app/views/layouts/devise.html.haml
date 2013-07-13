@@ -1,0 +1,28 @@
+!!!
+%html{class: "js inlinesvg"}
+  %head
+    %title
+      elephant farm
+    = javascript_include_tag 'application_manifest'
+    = stylesheet_link_tag 'stylesheets_manifest' 
+    = csrf_meta_tag 
+
+  %body{style: "margin: 0px;overflow: visible;"}
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %button{type: "button", class: "btn btn-navbar", "data-toggle" => "collapse", "data-target" => ".nav-collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+
+          = link_to 'Elephantel Farm', root_path, class: 'brand'
+
+          = render 'devise/sessions/head'
+          
+          %ul.nav.pull-right
+            %li= link_to 'Explore', "#"
+            %li= link_to 'Features', "#"
+            %li= link_to 'Blog', "#"
+    //End Nav
+    = yield 

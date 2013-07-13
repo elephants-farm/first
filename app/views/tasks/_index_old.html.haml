@@ -1,0 +1,38 @@
+.container-fluid
+  %ul.clearfix{style: "color: black;", "data-bind" => "foreach: $root.priority_to_color"}
+    %li{style: "border-radius: 5px;", "data-bind" => " style: { background: color }"}
+      .container-fluid.well{style: "background: transparent;background-image: url('/assets/pattern1.png');background-repeat: repeat;border-radius: 5px;"}
+        .row-fluid
+          %ul.thumbnails{"data-bind" => "foreach: $root.tasks"}
+            / ko if: taskAttr.priority == $parent.id
+            %li.span3
+              %a.thumbnail{href: "#", "data-bind" => "click: $root.view_task", style: "background-image: url('/assets/pattern1.png');background-color: #fff;background-repeat: repeat;"}
+                .caption
+                  .row-fluid
+                    .span12                      
+                      .clearfix
+                        %span.label.pull-left{style: "color: white;", "data-bind" =>"text: $root.status_to_string[taskAttr.status], style: { background: $root.status_to_color[taskAttr.status] }"}
+                        /.span2{"data-bind" => "'ifnot': $root.current_project()"}
+                        /  %strong{"data-bind" =>"text: $root.find_project_by_task($data).name"}
+                        /.span2{"data-bind" =>"text: taskAttr.name,click: $root.view_task"}
+                        %span.pull-right
+                          %strong
+                            = "#"
+                            %span{"data-bind" =>"text: id"}
+                      .clearfix
+                        %h6{"data-bind" =>"text: taskAttr.name"}
+                        %h6{"data-bind" =>"text: taskAttr.dead_line_time"}
+                        %h6{"data-bind" =>"text: taskAttr.finish_to_time"}
+                        %p{"data-bind" =>"html: taskAttr.description"}
+                      %div
+                        comments
+                        %span{"data-bind" => "text: comments().length"}
+                      /comments
+                      %ul{"data-bind" => "foreach: comments"}
+                        %li
+                          %h6
+                            %img.img-circle{"data-bind"=> "attr: { src: author.avatar.micro }"}  
+                            %span{"data-bind" => "text: author.name"}
+                          %p{"data-bind" => "text: commentAttr.title"}
+                          %p{"data-bind" => "text: commentAttr.description"}
+            / /ko

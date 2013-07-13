@@ -1,0 +1,12 @@
+%ul.nav
+  %li.dropdown
+    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      settings
+      %span.icon-cog
+      /%b.caret
+    %ul.dropdown-menu
+      %li= link_to 'My profile', current_user.user_profile
+      %li= link_to "Company profile", [:edit, current_company]
+      %li= link_to 'Users', users_path
+      %li= link_to 'Projects', projects_path
+      %li= link_to 'Tags', tags_path

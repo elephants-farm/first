@@ -1,0 +1,30 @@
+.container-fluid
+  = form_for Upload.new, :html => { :multipart => true, :id => "fileupload"  } do |f|
+    = f.hidden_field :task_id, value: '', "data-bind" => "attr: { value: $root.current_task().id }"
+    .row.fileupload-buttonbar
+      .span7
+        %span.btn.btn-mini.fileinput-button
+          %i.icon-plus
+          %span Add files...
+          = f.file_field :upload
+        %button.btn.btn-mini.start{:type => "submit"}
+          %i.icon-upload
+          %span Start upload
+        %button.btn.btn-mini.cancel{:type => "reset"}
+          %i.icon-ban-circle
+          %span Cancel upload
+        %button.btn.btn-mini.delete{:type => "button"}
+          %i.icon-trash
+          %span Delete
+        %input.toggle{:type => "checkbox"}/
+      .span5
+        / The global progress bar
+        .progress.progress-success.progress-striped.active.fade
+          .bar{:style => "width:0%;"}
+    / The loading indicator is shown during image processing
+    .fileupload-loading
+    %br/
+    / The table listing the files available for upload/download
+    %table.table.table-striped
+      %tbody.files{"data-target" => "#modal-gallery", "data-toggle" => "modal-gallery"}
+

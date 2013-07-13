@@ -1,0 +1,14 @@
+.navbar
+  .navbar-inner
+    .container
+      %button{type: "button", class: "btn btn-navbar", "data-toggle" => "collapse", "data-target" => ".nav-collapse"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+      %ul.nav
+        %li{class: "#{current_item == 'my_profile' ? 'active' : '' }"}= link_to 'My profile', current_user.user_profile
+        %li{class: "#{current_item == 'company_profile' ? 'active' : '' }"}= link_to "Company Profile", [:edit, current_company]
+        %li{class: "#{current_item == 'users' ? 'active' : '' }"}= link_to 'Users', users_path
+        %li{class: "#{current_item == 'projects' ? 'active' : '' }"}= link_to 'Projects', projects_path
+        %li{class: "#{current_item == 'tags' ? 'active' : '' }"}= link_to 'Tags', tags_path

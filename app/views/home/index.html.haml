@@ -1,0 +1,73 @@
+%header#overview.jumbotron.subhead
+  %br
+  %br
+  .container
+    .row-fluid
+      .span7.description
+        %br
+        %h1 
+          Welcome to Elephantel Farm
+          %br
+          Build Tasks better, together.
+        %p Slogan & long description project!
+        //%img{src: '/assets/logo.png'}
+      .span5
+        %ul#myTab.nav.nav-tabs
+          %li.active
+            %a{:href => "#company_up"} Sign up as Company
+          %li
+            %a{:href => "#user_up"} Sign up as User
+        .tab-content
+          #company_up.tab-pane.active
+            = render template: 'devise/registrations/new_company'
+          #user_up.tab-pane
+            = render template: 'devise/registrations/new'
+        //= render template: 'devise/sessions/new'
+        .clearfix
+.container{style: "margin-top:20px;"}
+  .row-fluid.text-center
+    .span12
+      .well
+        %h2 Why you’ll love Elephantel Farm.
+        %p Powerful features to make software development more collaborative.
+        %br
+        %br
+        .row-fluid
+          .span4
+            %img.img-circle{:alt => "140x140", "data-src" => "holder.js/140x140", :src => "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAACMCAYAAACuwEE+AAAFkElEQVR4Xu3X10tcbRDH8bFgFwsE8ULFBt4Ea1Bs+K/bSxRJIqKgJl6Kuoq9G+aBFfVCnDej7M77PXebjHN2fvPhOWcLMpnMo3CRwDsTKADMO5OiLCUAGCCYEgCMKS6KAYMBUwKAMcVFMWAwYEoAMKa4KAYMBkwJAMYUF8WAwYApAcCY4qIYMBgwJQAYU1wUAwYDpgQAY4qLYsBgwJQAYExxUQwYDJgSAIwpLooBgwFTAoAxxUUxYDBgSgAwprgoBgwGTAkAxhQXxYDBgCkBwJjiohgwGDAlABhTXBQDBgOmBABjiotiwGDAlABgTHFRDBgMmBIAjCkuigGDAVMCgDHFRTFgMGBKADCmuCgGDAZMCQDGFBfFgMGAKQHAmOKiGDAYMCUAGFNcFAMGA6YEAGOKi2LAYMCUAGBMcVEMGAyYEgCMKS6KAYMBUwKAMcVFMWAwYEoAMKa4KAYMBkwJAMYUF8WAwYApAcCY4qIYMBgwJQAYU1wUAwYDpgQAY4qLYsBgwJRA3oP5/fu37O7uytDQkJSVlb0YPpPJyPr6ulRUVEhvb68UFBTI4+OjrK2tycHBQfrc1tYmzc3N7w7ts+/37i/2SYV5C+b4+FgUxM7OTopqZGREysvLn2JTGJOTk3J3dyclJSUyOjoqhYWF8uPHD9nf35fS0lK5ublJgL5+/SoNDQ1vRv7Z9/uk/Ztvk7dgpqam0sKzl4J4fsJsbW3Jnz9/0n/rvyuo+/t70b9TOGNjYwmcAqqtrZWuri75+fOnFBUVSV9fn5ydncnGxkaC1dPTIzMzM673GxgYMC8rF/4gb8HoyaGPlIWFBbm8vEwnSBaMfp6dnU2PmpOTE7m4uEhAbm9v0+KLi4vT5ywg/Tw+Pi4rKytydHQk9fX1cnV1lf6us7NTWlpa0knlfb9cAGD9DnkLJjuogtHT4DmY79+/p3+bmJiQpaUlub6+fjpRVldXpa6uTvr7+xMCPXGyjyw9sRTUw8NDal9TUyPfvn17kann/azLyoX6cGD0XWN5eVkqKyulqalJtre3E4COjg758uVLOnn0MfP8EZU9YXQh+lKrf6PX4OCgVFdXvwnmX++XCwgs3yEcmMPDQ9FT5PWl7y362NETRYHoiaSnkJ5A+itqeHg4PaKmp6fTyaOXAuvu7n4TzL/cz7KoXKnNezDz8/Nyfn7+9EjS0yT7MqxI9PGkAPS00Hecubm59G7S2Ngop6enCU17e7u0trbKr1+/ZG9vT6qqqlKN9nr9C8rzfrmCwPI98h6MnhD6Yvv6V9LzdxwFo48gfWlVXIuLiy/eU/R9RvEoLq3RF2KFs7m5+fSCrL+e9PK6n2LOxyvvwfyX0PXk0F9Beunj6KOvz77fR87zvwTzkYFG7w2Y6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGb/cX0D49tZTQmgsAAAAASUVORK5CYII=", :style => "width: 140px; height: 140px;"}/
+            %h2 Heading
+            %p Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+          .span4
+            %img.img-circle{:alt => "140x140", "data-src" => "holder.js/140x140", :src => "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAACMCAYAAACuwEE+AAAFkElEQVR4Xu3X10tcbRDH8bFgFwsE8ULFBt4Ea1Bs+K/bSxRJIqKgJl6Kuoq9G+aBFfVCnDej7M77PXebjHN2fvPhOWcLMpnMo3CRwDsTKADMO5OiLCUAGCCYEgCMKS6KAYMBUwKAMcVFMWAwYEoAMKa4KAYMBkwJAMYUF8WAwYApAcCY4qIYMBgwJQAYU1wUAwYDpgQAY4qLYsBgwJQAYExxUQwYDJgSAIwpLooBgwFTAoAxxUUxYDBgSgAwprgoBgwGTAkAxhQXxYDBgCkBwJjiohgwGDAlABhTXBQDBgOmBABjiotiwGDAlABgTHFRDBgMmBIAjCkuigGDAVMCgDHFRTFgMGBKADCmuCgGDAZMCQDGFBfFgMGAKQHAmOKiGDAYMCUAGFNcFAMGA6YEAGOKi2LAYMCUAGBMcVEMGAyYEgCMKS6KAYMBUwKAMcVFMWAwYEoAMKa4KAYMBkwJAMYUF8WAwYApAcCY4qIYMBgwJQAYU1wUAwYDpgQAY4qLYsBgwJRA3oP5/fu37O7uytDQkJSVlb0YPpPJyPr6ulRUVEhvb68UFBTI4+OjrK2tycHBQfrc1tYmzc3N7w7ts+/37i/2SYV5C+b4+FgUxM7OTopqZGREysvLn2JTGJOTk3J3dyclJSUyOjoqhYWF8uPHD9nf35fS0lK5ublJgL5+/SoNDQ1vRv7Z9/uk/Ztvk7dgpqam0sKzl4J4fsJsbW3Jnz9/0n/rvyuo+/t70b9TOGNjYwmcAqqtrZWuri75+fOnFBUVSV9fn5ydncnGxkaC1dPTIzMzM673GxgYMC8rF/4gb8HoyaGPlIWFBbm8vEwnSBaMfp6dnU2PmpOTE7m4uEhAbm9v0+KLi4vT5ywg/Tw+Pi4rKytydHQk9fX1cnV1lf6us7NTWlpa0knlfb9cAGD9DnkLJjuogtHT4DmY79+/p3+bmJiQpaUlub6+fjpRVldXpa6uTvr7+xMCPXGyjyw9sRTUw8NDal9TUyPfvn17kann/azLyoX6cGD0XWN5eVkqKyulqalJtre3E4COjg758uVLOnn0MfP8EZU9YXQh+lKrf6PX4OCgVFdXvwnmX++XCwgs3yEcmMPDQ9FT5PWl7y362NETRYHoiaSnkJ5A+itqeHg4PaKmp6fTyaOXAuvu7n4TzL/cz7KoXKnNezDz8/Nyfn7+9EjS0yT7MqxI9PGkAPS00Hecubm59G7S2Ngop6enCU17e7u0trbKr1+/ZG9vT6qqqlKN9nr9C8rzfrmCwPI98h6MnhD6Yvv6V9LzdxwFo48gfWlVXIuLiy/eU/R9RvEoLq3RF2KFs7m5+fSCrL+e9PK6n2LOxyvvwfyX0PXk0F9Beunj6KOvz77fR87zvwTzkYFG7w2Y6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGb/cX0D49tZTQmgsAAAAASUVORK5CYII=", :style => "width: 140px; height: 140px;"}/
+            %h2 Heading
+            %p Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+          .span4
+            %img.img-circle{:alt => "140x140", "data-src" => "holder.js/140x140", :src => "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAACMCAYAAACuwEE+AAAFkElEQVR4Xu3X10tcbRDH8bFgFwsE8ULFBt4Ea1Bs+K/bSxRJIqKgJl6Kuoq9G+aBFfVCnDej7M77PXebjHN2fvPhOWcLMpnMo3CRwDsTKADMO5OiLCUAGCCYEgCMKS6KAYMBUwKAMcVFMWAwYEoAMKa4KAYMBkwJAMYUF8WAwYApAcCY4qIYMBgwJQAYU1wUAwYDpgQAY4qLYsBgwJQAYExxUQwYDJgSAIwpLooBgwFTAoAxxUUxYDBgSgAwprgoBgwGTAkAxhQXxYDBgCkBwJjiohgwGDAlABhTXBQDBgOmBABjiotiwGDAlABgTHFRDBgMmBIAjCkuigGDAVMCgDHFRTFgMGBKADCmuCgGDAZMCQDGFBfFgMGAKQHAmOKiGDAYMCUAGFNcFAMGA6YEAGOKi2LAYMCUAGBMcVEMGAyYEgCMKS6KAYMBUwKAMcVFMWAwYEoAMKa4KAYMBkwJAMYUF8WAwYApAcCY4qIYMBgwJQAYU1wUAwYDpgQAY4qLYsBgwJRA3oP5/fu37O7uytDQkJSVlb0YPpPJyPr6ulRUVEhvb68UFBTI4+OjrK2tycHBQfrc1tYmzc3N7w7ts+/37i/2SYV5C+b4+FgUxM7OTopqZGREysvLn2JTGJOTk3J3dyclJSUyOjoqhYWF8uPHD9nf35fS0lK5ublJgL5+/SoNDQ1vRv7Z9/uk/Ztvk7dgpqam0sKzl4J4fsJsbW3Jnz9/0n/rvyuo+/t70b9TOGNjYwmcAqqtrZWuri75+fOnFBUVSV9fn5ydncnGxkaC1dPTIzMzM673GxgYMC8rF/4gb8HoyaGPlIWFBbm8vEwnSBaMfp6dnU2PmpOTE7m4uEhAbm9v0+KLi4vT5ywg/Tw+Pi4rKytydHQk9fX1cnV1lf6us7NTWlpa0knlfb9cAGD9DnkLJjuogtHT4DmY79+/p3+bmJiQpaUlub6+fjpRVldXpa6uTvr7+xMCPXGyjyw9sRTUw8NDal9TUyPfvn17kann/azLyoX6cGD0XWN5eVkqKyulqalJtre3E4COjg758uVLOnn0MfP8EZU9YXQh+lKrf6PX4OCgVFdXvwnmX++XCwgs3yEcmMPDQ9FT5PWl7y362NETRYHoiaSnkJ5A+itqeHg4PaKmp6fTyaOXAuvu7n4TzL/cz7KoXKnNezDz8/Nyfn7+9EjS0yT7MqxI9PGkAPS00Hecubm59G7S2Ngop6enCU17e7u0trbKr1+/ZG9vT6qqqlKN9nr9C8rzfrmCwPI98h6MnhD6Yvv6V9LzdxwFo48gfWlVXIuLiy/eU/R9RvEoLq3RF2KFs7m5+fSCrL+e9PK6n2LOxyvvwfyX0PXk0F9Beunj6KOvz77fR87zvwTzkYFG7w2Y6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGbweY6Bt2ng8wzoFGb/cX0D49tZTQmgsAAAAASUVORK5CYII=", :style => "width: 140px; height: 140px;"}/
+            %h2 Heading
+            %p Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+//footer
+%footer.footer
+  .container
+    %p.pull-right
+      %a{:href => "#"} Back to top
+    %p
+      © 2013 Elephantel Farm, Inc. ·
+      %a{:href => "#"} Privacy
+      ·
+      %a{:href => "#"} Terms
+      ·
+      %a{:href => "#"} Explore
+      ·
+      %a{:href => "#"} Features
+      ·
+      %a{:href => "#"} Blog
+
+//JS
+:javascript
+  $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  })
+
+:javascript
+  $(".collapse").collapse({toggle: false, parent: '#accordion2'});

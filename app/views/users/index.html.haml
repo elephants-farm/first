@@ -1,0 +1,23 @@
+= render 'menus/settings', current_item: 'users'
+.well
+  = link_to 'invite user', "#", class: 'btn'
+
+  %ul
+    %li
+      .row-fluid
+        .span3
+          email
+        .span3
+          last login
+
+        .span2
+    - @users.each do |user|
+      %li
+        .row-fluid
+          .span3
+            %h5= user.email
+          .span3
+            %h5= user.online_at
+
+          .span2
+            edit

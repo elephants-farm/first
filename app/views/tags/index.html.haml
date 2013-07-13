@@ -1,0 +1,20 @@
+= render 'menus/settings', current_item: 'tags'
+
+
+.well
+  #tags
+    .row-fluid.text-center
+      %ul.thumbnails
+        %li.span2
+          %a.thumbnail{href: "#", style: "min-height: 70px;"}
+            %input{class: 'input-block-level', placeholder: :email}
+        %li.span2
+          %a.thumbnail{href: "#"}
+
+            .caption.text-center
+              %h3
+                %i.icon-plus
+
+:javascript
+  var tags =  #{ render template: 'external/tags', locals: {tags: Tag.all}  };
+  console.log(tags);

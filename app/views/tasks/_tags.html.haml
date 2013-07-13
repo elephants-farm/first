@@ -1,0 +1,8 @@
+.navbar.navbar-fixed-bottom
+  .navbar-inner
+    .container
+      %ul.nav{"data-bind" => "foreach: $root.tags"}
+        %li{"data-bind" => "css: { active: $root.task_view_settings().is_tag_selected($data) }"}
+          %a{href: "#", "data-bind" => "click: $root.select_tag"}
+            %span{"data-bind" => "text: name"}
+            %span.label{"data-bind" => "text: tasks_count"}

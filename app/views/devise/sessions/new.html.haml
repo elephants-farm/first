@@ -1,0 +1,18 @@
+.row-fluid
+  .span12
+    .clear-form
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+        .form-heading
+          %h3
+            Sign in
+        .form-body
+          .pair-group
+            = f.email_field :email, :autofocus => true, class: 'input-block-level', placeholder: :email
+            = f.password_field :password, class: 'input-block-level', placeholder: :password
+          - if devise_mapping.rememberable?
+            .row-fluid
+              .span1= f.check_box :remember_me
+              .span5= f.label :remember_me
+        .form-footer
+          = f.submit "Sign in", class: "btn btn-large btn-blue btn-block"
+/= render "devise/shared/links"

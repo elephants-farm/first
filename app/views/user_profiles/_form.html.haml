@@ -1,0 +1,20 @@
+.row-fluid
+  .span6
+    .clear-form
+      = form_for(@user_profile) do |f|
+        .form-heading
+          %h5
+            Edit profile
+        .form-body
+          .pair-group
+            = f.text_field :name, :autofocus => true, class: 'input-block-level', placeholder: :name
+            = f.text_field :surname, class: 'input-block-level', placeholder: :surname
+            .input-block-level
+              Avatar
+              = image_tag @user_profile.avatar.url(:standart) 
+            
+            = f.file_field :avatar, class: 'input-block-level'
+        .form-footer
+          = f.submit "Save", class: "btn btn-large btn-blue btn-block"
+
+/= render "devise/shared/links"

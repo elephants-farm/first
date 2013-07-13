@@ -1,0 +1,40 @@
+.container-fluid
+  .row-fluid.text-center
+    .span4
+      %span.label New
+    .span4
+      %span.label.label-success In progress
+    .span4
+      %span.label.label-info Complete
+  / ko if: $root.task_view_settings().show_unassigned() && $root.task_view_settings().unassigned_count() > 0
+  %strong 
+    UNASSIGNED
+    %span{"data-bind" => "text: $root.task_view_settings().unassigned_count()"}
+  .row-fluid
+    .span4#first-col{style: "border: 1px solid #ddd;min-height: 200px;border-radius: 5px;"}
+      %div{"data-bind" => "template: { name: 'dashboard_by_state_template', data: {task_state: 1, employer: null} }"}
+    .span4#second-col.ui-widget-content{style: "border: 1px solid #ddd;min-height: 200px;border-radius: 5px;"}
+      %div{"data-bind" => "template: { name: 'dashboard_by_state_template', data: {task_state: 2, employer: null} }"}
+    .span4#third-col{style: "border: 1px solid #ddd;min-height: 200px;border-radius: 5px;"}
+      %div{"data-bind" => "template: { name: 'dashboard_by_state_template', data: {task_state: 3, employer: null} }"}
+  / /ko
+  %div{"data-bind" => "foreach: $root.employees"}
+    / ko if: $root.task_view_settings().is_user_selected($data) || $root.task_view_settings().selected_users().length == 0 
+    %h6
+      %img.img-circle{"data-bind"=> "attr: { src: avatar.micro }"}  
+      %strong
+        %span{"data-bind" => "text: name"}
+        %span{"data-bind" => "text: surname"}
+        (
+        %span{"data-bind" => "text: tasks_count"}
+        )
+    .row-fluid
+      .span4#first-col{style: "border: 1px solid #ddd;min-height: 200px;border-radius: 5px;"}
+        %div{"data-bind" => "template: { name: 'dashboard_by_state_template', data: {task_state: 1, employer: id} }"}
+      .span4#second-col.ui-widget-content{style: "border: 1px solid #ddd;min-height: 200px;border-radius: 5px;"}
+        %div{"data-bind" => "template: { name: 'dashboard_by_state_template', data: {task_state: 2, employer: id} }"}
+      .span4#third-col{style: "border: 1px solid #ddd;min-height: 200px;border-radius: 5px;"}
+        %div{"data-bind" => "template: { name: 'dashboard_by_state_template', data: {task_state: 3, employer: id} }"}
+    / /ko
+%script{:type => "text/html", :id => "dashboard_by_state_template"}
+  = render 'dashboard_by_user_by_state'

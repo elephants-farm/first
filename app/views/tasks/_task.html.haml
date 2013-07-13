@@ -1,0 +1,111 @@
+/ ko if: current_task()
+.well{style: "border: 1px solid #ddd;border-radius: 5px;"}
+  .tabbable
+    / Only required for left/right tabs
+    %ul.nav.nav-tabs
+      %li.active
+        %a{"data-toggle" => "tab", :href => "#tab1"} Base
+      %li
+        %a{"data-toggle" => "tab", :href => "#tab2"} Files
+  .tab-content
+    #tab1.tab-pane.active
+  
+      .row-fluid
+        .span7{style: "border-right: 1px solid #ddd;"}
+          .row-fluid
+            .span3
+              Author
+            .span9
+              %strong
+                %img.img-circle{"data-bind"=> "attr: { src: current_task().author.avatar.micro }"}  
+                %span{"data-bind" =>"text: current_task().author.name"}      
+                %span{"data-bind" =>"text: current_task().author.email"}
+          .row-fluid
+            .span3
+              Assigned to
+            .span9
+              / ko if: current_task().assigned_to()
+              %strong
+                %img.img-circle{"data-bind"=> "attr: { src: current_task().assigned_to().avatar.micro }"}  
+                %span{"data-bind" =>"text: current_task().assigned_to().name"}      
+                %span{"data-bind" =>"text: current_task().assigned_to().email"}
+              / /ko
+              / ko ifnot: current_task().assigned_to()
+              %span Unassigned
+              / /ko
+          .row-fluid
+            .span3
+              Status
+            .span9
+              %span{"data-bind" => "text: current_task().taskAttr.status"}
+              = link_to 'Close task','#',"data-bind"=>"click: $root.close_task", class: "btn btn-mini"
+          .row-fluid
+            .span3
+              Project
+            .span9
+              %span{"data-bind" => "text: current_task().taskAttr.project_id"}
+          .row-fluid
+            .span3
+              Dead line time
+            .span8
+              %span{"data-bind" =>"text: current_task().taskAttr.dead_line_time"}
+            .span1
+              edit
+          .row-fluid
+            .span3
+              Finish to time
+            .span8
+              %span{"data-bind" =>"text: current_task().taskAttr.finish_to_time"}
+            .span1
+              edit
+          .row-fluid
+            .span3
+              Name
+            .span8
+              %span{"data-bind" =>"text: current_task().taskAttr.name"}
+            .span1
+              edit
+          .row-fluid
+            .span3
+              Priority
+            .span9
+              %span{"data-bind" => "text: current_task().taskAttr.priority"}
+          .row-fluid
+            .span3
+              Assigned users
+            .span8
+              %ul.nav{"data-bind" => "foreach: current_task().assigned_users_objs"}
+                %li
+                  %img.img-circle{"data-bind"=> "attr: { src: user.avatar.micro }"}  
+                  %span{"data-bind" => "text: user.name"}
+                  %span{"data-bind" => "text: user.surname"}
+            .span1
+              edit
+          .row-fluid
+            .span3
+              Tags
+            .span8
+              %ul.nav{"data-bind" => "foreach: current_task().tags"}
+                %li
+                  %span{"data-bind" => "text: name"}
+            .span1
+              edit
+          .row-fluid
+            .span3
+              Description
+            .span8
+              %p{"data-bind" =>"html: current_task().taskAttr.description"}
+            .span1
+              edit
+          
+        .span4
+          Comments
+          %span{"data-bind" => "text: current_task().comments().length"}
+          %br
+          = render 'comments'
+        .span1
+          = link_to 'Edit task','#',"data-bind"=>"click: $root.edit_task", class: "btn btn-mini"
+    #tab2.tab-pane
+      = render 'uploads'
+
+/ /ko

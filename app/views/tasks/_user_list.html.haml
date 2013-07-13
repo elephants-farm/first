@@ -1,0 +1,13 @@
+#user-list
+  .container
+    %ul.nav.nav-pills.pull-left{"data-bind" => "foreach: $root.employees"}
+      %li{"data-bind" => "css: { active: $root.task_view_settings().is_user_selected($data) }"}
+        %a{href: "#", "data-bind" => "click: $root.select_user"}
+          %img.img-circle{"data-bind"=> "attr: { src: avatar.micro }"}  
+          %span{"data-bind" => "text: name"}
+          %span{"data-bind" => "text: surname"}
+          %span.label{"data-bind" => "visible: online"}
+            online
+    %ul.nav.nav-pills.pull-right 
+      %li
+        %input{type: "checkbox", "data-bind" => "checked: $root.task_view_settings().show_unassigned"} show unassigned tasks

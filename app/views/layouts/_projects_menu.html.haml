@@ -1,0 +1,7 @@
+.nav-collapse.collapse
+  %ul.nav
+    - current_company.projects.each do |project|
+      %li{class: "#{current_project == project ? 'active' : '' }"}
+        = link_to [project, :tasks] do
+          %span= project.name
+          %strong= project.tasks_count

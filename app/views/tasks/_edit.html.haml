@@ -1,0 +1,55 @@
+/ ko if: $root.current_task()
+.tabbable{style: "border: 1px solid #ddd;border-radius: 5px;"}
+  / Only required for left/right tabs
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"data-toggle" => "tab", :href => "#tab1"} Base
+    %li
+      %a{"data-toggle" => "tab", :href => "#tab2"} Files
+    %li.pull-right
+      = link_to 'save task','#', class: 'btn btn-link btn-small', "data-bind" => "click: $root.save_task"
+  .tab-content
+    #tab1.tab-pane.active
+      
+      .container-fluid
+        %div{style: "margin-left: 20px;","data-bind" => "'if': $root.notice() "}
+          .alert{"data-bind" => "text: $root.notice" }
+
+        .row-fluid
+          .span4
+            Assigned To
+            %select.input-block-level{"data-bind" => "options: employees, value: current_task().taskAttr.assigned_to_user_id, optionsText: 'surname',optionsValue: 'id',optionsCaption: '----------', select2: { placeholder: 'Select' }"}
+            Assigned users
+            %select.input-block-level{multiple: true, "data-bind" => "options: employees, selectedOptions: $root.current_task().assigned_users, optionsText: 'surname',optionsValue: 'id', select2: { placeholder: 'Select' }"}
+
+            Project (delete!!!!)
+            %select.input-block-level{"data-bind" => "options: $root.projects, value: current_task().taskAttr.project_id, optionsText: 'name',optionsValue: 'id', optionsCaption: '   '"}
+            Priority
+            %select.input-block-level{"data-bind" => "options: [{id: 1,name: 'low'},{id: 2,name: 'middle'},{id: 3,name: 'high'},{id: 4,name: 'immediately'}], value: current_task().taskAttr.priority, optionsText: 'name',optionsValue: 'id'"}
+            Dead_line_time
+            %input.input-block-level{"data-bind" =>"value: current_task().taskAttr.dead_line_time"}
+            Finish_to_time
+            %input.input-block-level{"data-bind" =>"value: current_task().taskAttr.finish_to_time"}
+            Status(delete!!!!)
+            %select.input-block-level{"data-bind" => "options: [{id: 1,name: 'new'},{id: 2,name: 'in progress'},{id: 3,name: 'complete'},{id: 4,name: 'aborted'},{id: 5,name: 'closed'} ], value: current_task().taskAttr.status, optionsText: 'name',optionsValue: 'id'"}
+
+          .span8
+            .clearfix
+              Tags
+              %select.input-block-level{multiple: true, "data-bind" => "options: $root.tags, selectedOptions: $root.current_task().tags, optionsText: 'name', optionsValue: 'name', select2: { placeholder: 'Select' }"}
+            .clearfix
+              Name
+              %input.input-block-level{"data-bind" =>"value: current_task().taskAttr.name"}
+            
+            .clearfix
+              Description
+              %textarea.input-block-level{rows: 15,"data-bind" =>"value: current_task().taskAttr.description"}
+            
+    #tab2.tab-pane
+      %h5
+        attaced files
+     
+/ /ko
+
+:javascript  
+  
