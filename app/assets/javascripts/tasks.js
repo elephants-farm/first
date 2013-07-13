@@ -92,13 +92,16 @@ function ManageTasksViewModel(project){
   self.employees = ko.observableArray([]);
   self.notice = ko.observable();
   self.current_task = ko.observable();
+  self.data_loading = ko.observable(false);
 
   self.load_tags = function(){    
+    self.data_loading(true);
     $.getJSON("/tags", function(data) { 
       self.tags([]);
       ko.utils.arrayForEach(data.tags, function(item) {
         self.tags.push(new TagViewModel(item.tag));
       });
+      self.data_loading(false);
     });
   };
 

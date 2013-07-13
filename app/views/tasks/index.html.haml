@@ -53,8 +53,12 @@
             %span{"data-bind" => "text: name"}
             
 
-   
+  / ko if: $root.data_loading()
+  %div{style: "background-image: url('/assets/spinner_gray.gif');width: 100px;height: 100px;background-repeat: no-repeat;margin: 0 auto;background-position: center;"}
+  / /ko
+  / ko ifnot: $root.data_loading()
   %div{"data-bind" => "template: { name: $root.task_state() }"}
+  / /ko
 
 %script{:type => "text/html", :id => "task_index_template"}
   /- if current_company.id == 1
