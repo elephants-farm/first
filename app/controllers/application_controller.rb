@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper :all
-  before_filter :init_user_profile
+  before_filter :init_user_profile  #!!!! delete move to registrations and create on registration
   before_filter :make_current_online
   helper_method :current_company
   include ApplicationHelper
