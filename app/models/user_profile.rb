@@ -6,5 +6,6 @@ class UserProfile < ActiveRecord::Base
         mini: "50x50",
         small: "100x100",
         standart: "200x200"
-    }
+    },
+    :default_url => '/assets/avatar_missing/missing_:style.png'
 end

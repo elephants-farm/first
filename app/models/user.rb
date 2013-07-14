@@ -12,13 +12,18 @@ class User < ActiveRecord::Base
   belongs_to :company
   has_and_belongs_to_many :tasks
 
-#many roles per user https://github.com/ryanb/cancan/wiki/Role-Based-Authorization
+  #many roles per user https://github.com/ryanb/cancan/wiki/Role-Based-Authorization
   def admin?
     self.role.to_sym == :admin
   end
 
   def go_online
     self.update_attributes(online_at: DateTime.now)
+  end
+
+  def is?(search_role)
+    roles_arr = role.split(' ').map { |role| role.to_sym }
+    roles_arr.include?(search_role)
   end
 
   def to_builder

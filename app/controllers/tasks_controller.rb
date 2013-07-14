@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @current_project = Project.find(params[:project_id])
+    authorize! :list_tasks, @current_project
   end
 
   def fetch_uploads

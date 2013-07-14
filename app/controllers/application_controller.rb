@@ -13,7 +13,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_company
   include ApplicationHelper
 
-  
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to access_denied_path, :alert => exception.message
+  end
+
   def sign_in_user_with_api_key
     unless params[:token].blank?
       # find token. Check if valid.

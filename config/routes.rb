@@ -1,5 +1,6 @@
 ElephantFarm::Application.routes.draw do
   devise_for :users, :controllers => {:sessions => "auth/sessions", :registrations => "auth/registrations"}
+  get :access_denied, to: 'home#access_denied'
 
   resources :uploads
 
