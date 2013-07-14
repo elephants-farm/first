@@ -1,7 +1,7 @@
 %div
   .row-fluid
     %ul{"data-bind" => "foreach: $root.tasks", style: "width: 100%;padding: 0;margin: 0;"}
-      / ko if: taskAttr.status == $parent.task_state && taskAttr.assigned_to_user_id == $parent.employer
+      / ko if: TaskAttr().status() == $parent.task_state && TaskAttr().assigned_to_user_id == $parent.employer
       %li
         #task-item
           %a.thumbnail.ef-background-gray{href: "#","data-bind" => "click: $root.view_task", style: "margin:10px;"}
@@ -9,19 +9,19 @@
               .row-fluid
                 .span12                      
                   .clearfix
-                    %span.label.pull-left{style: "color: white;", "data-bind" =>"text: $root.status_to_string[taskAttr.status], style: { background: $root.status_to_color[taskAttr.status] }"}
+                    %span.label.pull-left{style: "color: white;", "data-bind" =>"text: $root.status_to_string[TaskAttr().status()], style: { background: $root.status_to_color[TaskAttr().status()] }"}
                     /.span2{"data-bind" => "'ifnot': $root.current_project()"}
                     /  %strong{"data-bind" =>"text: $root.find_project_by_task($data).name"}
-                    /.span2{"data-bind" =>"text: taskAttr.name,click: $root.view_task"}
+                    /.span2{"data-bind" =>"text: TaskAttr().name,click: $root.view_task"}
                     %span.pull-right
                       %strong
                         = "#"
                         %span{"data-bind" =>"text: id"}
                   .clearfix{style: "word-wrap: break-word;"}
-                    %h6{"data-bind" =>"text: taskAttr.name"}
-                    %h6{"data-bind" =>"text: taskAttr.dead_line_time"}
-                    %h6{"data-bind" =>"text: taskAttr.finish_to_time"}
-                    %p{"data-bind" =>"html: taskAttr.description"}
+                    %h6{"data-bind" =>"text: TaskAttr().name"}
+                    %h6{"data-bind" =>"text: TaskAttr().dead_line_time"}
+                    %h6{"data-bind" =>"text: TaskAttr().finish_to_time"}
+                    %p{"data-bind" =>"html: TaskAttr().description"}
                   %div
                     comments
                     %span{"data-bind" => "text: comments().length"}

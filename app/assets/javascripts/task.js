@@ -4,7 +4,7 @@ function TaskAttr(task){
   self.name = task.name;
   self.description = task.description;
   self.priority = task.priority;
-  self.status = task.status;
+  self.status = ko.observable(task.status);
   self.creator_user_id = task.author.id;
   self.assigned_to_user_id = task.assigned_to_user_id;
   self.estimate_point = task.estimate_point;
@@ -28,7 +28,7 @@ function TaskViewModel(task){
   self.assigned_users = ko.observableArray([]);
   self.tags = ko.observableArray([]);
 
-  self.taskAttr = new TaskAttr(task);  
+  self.TaskAttr = ko.observable(new TaskAttr(task));  
 
   self.init_assigned_to = function(){
     self.assigned_to(task.assigned_to ? new UserViewModel(task.assigned_to) : null);
@@ -45,11 +45,11 @@ function TaskViewModel(task){
   };
 
   self.close = function(){
-    self.taskAttr.status = 5;
+    self.TaskAttr().status = 5;
   };
 
   self.is_closed = function(){
-    return self.taskAttr.status == 5;
+    return self.TaskAttr().status == 5;
   };
 
   self.init_tags = function(){

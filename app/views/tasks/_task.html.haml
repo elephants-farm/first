@@ -36,10 +36,10 @@
           .row-fluid
             .span3
               Status
-              %span.label{style: "color: white;", "data-bind" =>"text: $root.status_to_string[current_task().taskAttr.status], style: { background: $root.status_to_color[current_task().taskAttr.status] }"}
+              %span.label{style: "color: white;", "data-bind" =>"text: $root.status_to_string[current_task().TaskAttr().status()], style: { background: $root.status_to_color[current_task().TaskAttr().status()] }"}
             .span9
               %div.pull-left{"data-bind" => "foreach: $root.status_active_codes"}
-                / ko if: $data != $parent.current_task().taskAttr.status
+                / ko if: $data != $parent.current_task().TaskAttr().status()
                 = link_to "#", "data-bind" =>  "click: $parent.set_new_status_for_current_task" do
                   %span.label{style: "color: white;", "data-bind" =>"text: $root.status_to_string[$data], style: { background: $root.status_to_color[$data] }"}
                 / /ko
@@ -48,26 +48,26 @@
             .span3
               Project
             .span9
-              %span{"data-bind" => "text: current_task().taskAttr.project_id"}
+              %span{"data-bind" => "text: current_task().TaskAttr().project_id"}
           .row-fluid
             .span3
               Dead line time
             .span8
-              %span{"data-bind" =>"text: current_task().taskAttr.dead_line_time"}
+              %span{"data-bind" =>"text: current_task().TaskAttr().dead_line_time"}
             .span1
               edit
           .row-fluid
             .span3
               Finish to time
             .span8
-              %span{"data-bind" =>"text: current_task().taskAttr.finish_to_time"}
+              %span{"data-bind" =>"text: current_task().TaskAttr().finish_to_time"}
             .span1
               edit
           .row-fluid
             .span3
               Priority
             .span9
-              %span{"data-bind" => "text: current_task().taskAttr.priority"}
+              %span{"data-bind" => "text: current_task().TaskAttr().priority"}
           .row-fluid
             .span3
               Assigned users
@@ -92,14 +92,14 @@
             .span3
               Name
             .span8
-              %span{"data-bind" =>"text: current_task().taskAttr.name"}
+              %span{"data-bind" =>"text: current_task().TaskAttr().name"}
             .span1
               edit
           .row-fluid
             .span3
               Description
             .span8
-              %p{"data-bind" =>"html: current_task().taskAttr.description"}
+              %p{"data-bind" =>"html: current_task().TaskAttr().description"}
             .span1
               edit
           

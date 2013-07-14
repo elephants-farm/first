@@ -110,7 +110,7 @@ function ManageTasksViewModel(project){
     ko.utils.arrayForEach(tasks, function(item) {
       var task = new TaskViewModel(item);
       
-      if(!task.taskAttr.assigned_to_user_id)
+      if(!task.TaskAttr().assigned_to_user_id)
         self.task_view_settings().unassigned_count_increment();
 
       task.load_comments();
@@ -135,7 +135,7 @@ function ManageTasksViewModel(project){
   };
 
     self.set_new_status_for_current_task = function(status){
-      self.current_task().taskAttr.status = status;
+      self.current_task().TaskAttr().status(status);
       self.save_task();
     };
 
@@ -143,7 +143,7 @@ function ManageTasksViewModel(project){
   self.save_task = function(){
     var send_data = {
       id: self.current_task().id,
-      taskAttr: ko.toJS(self.current_task().taskAttr),
+      taskAttr: ko.toJS(self.current_task().TaskAttr()),
       assigned_users: ko.toJS(self.current_task().assigned_users()),
       tags: ko.toJS(self.current_task().tags())
     };
@@ -251,7 +251,7 @@ function ManageTasksViewModel(project){
 //  self.find_project_by_task = function(task){
 //    var data = {name: ''};
 //    ko.utils.arrayForEach(self.projects, function(item) {
-//      if(item.id == task.taskAttr.project_id){
+//      if(item.id == task.TaskAttr().project_id){
 //        data = item;
 //      }
 //    });
@@ -261,7 +261,7 @@ function ManageTasksViewModel(project){
   self.priority_to_string  = {1: 'low',2: 'middle',3: 'high',4: 'immediately'};
   self.priority_to_color  = [{id: 4,color: 'rgb(218, 134, 134)'},{id: 3,color: 'rgb(121, 167, 121)'},{id: 2,color: 'rgb(221, 221, 105)'},{id: 1,color: 'rgb(139, 177, 177)'}];
   self.status_to_color  = {1: 'rgb(142, 167, 163)',2: 'rgb(79, 163, 79)',3: 'rgb(92, 70, 112)',4: 'red', 5: 'black'};
-  self.status_active_codes = [1, 2, 3, 4];
+  self.status_active_codes = [1, 2, 3];
   self.status_to_string  = {1: 'new',2: 'in progress',3: 'complete',4: 'aborted', 5: 'closed'};
 
   self.close_edit_task = function(task){
