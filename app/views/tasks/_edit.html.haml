@@ -23,7 +23,7 @@
             %select.input-block-level{multiple: true, "data-bind" => "options: employees, selectedOptions: $root.current_task().assigned_users, optionsText: 'surname',optionsValue: 'id', select2: { placeholder: 'Select' }"}
 
             Project (delete!!!!)
-            %select.input-block-level{"data-bind" => "options: $root.projects, value: current_task().TaskAttr().project_id, optionsText: 'name',optionsValue: 'id', optionsCaption: '   '"}
+            %select.input-block-level{"data-bind" => "options: $root.projects, value: current_task().TaskAttr().project_id, optionsText: 'name',optionsValue: 'id'"}
             Priority
             %select.input-block-level{"data-bind" => "options: [{id: 1,name: 'low'},{id: 2,name: 'middle'},{id: 3,name: 'high'},{id: 4,name: 'immediately'}], value: current_task().TaskAttr().priority, optionsText: 'name',optionsValue: 'id'"}
             Dead_line_time

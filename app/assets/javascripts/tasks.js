@@ -178,6 +178,7 @@ function ManageTasksViewModel(project){
   
   self.new_task = function(){   
     self.current_task(new TaskViewModel(new EmptyTask()));
+    self.current_task().TaskAttr().project_id = self.current_project().id;
     self.notice(null);
     self.task_state('task_new_template');
   };
