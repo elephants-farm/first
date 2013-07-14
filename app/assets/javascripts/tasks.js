@@ -95,13 +95,13 @@ function ManageTasksViewModel(project){
   self.data_loading = ko.observable(false);
 
   self.load_tags = function(){    
-    self.data_loading(true);
+    
     $.getJSON("/tags", function(data) { 
       self.tags([]);
       ko.utils.arrayForEach(data.tags, function(item) {
         self.tags.push(new TagViewModel(item.tag));
       });
-      self.data_loading(false);
+    
     });
   };
 
@@ -122,9 +122,11 @@ function ManageTasksViewModel(project){
   };
 
   self.load_tasks = function(){
+    self.data_loading(true);
     $.post("/projects/" + self.current_project().id + "/fetch_tasks", self.task_view_settings().to_js(), function(data) { 
       self.tasks([]);
       self.init_tasks_from_json(data.tasks);
+      self.data_loading(false);
     });
   };
 
