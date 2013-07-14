@@ -9,13 +9,8 @@ module Auth
     end
     
     def create
-      company_name = params[:user].delete(:company_name)
-
       build_resource(sign_up_params)
-
       if resource.save
-        resource.company = Company.create(name: company_name.blank? ? 'untitled company' : company_name)
-
         if resource.active_for_authentication?
           set_flash_message :notice, :signed_up if is_navigational_format?
           sign_up(resource_name, resource)

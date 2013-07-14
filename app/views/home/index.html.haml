@@ -1,7 +1,7 @@
 %header#overview.jumbotron.subhead
   .container
     .row-fluid
-      .span7.text-center.description
+      .span8.text-center.description
         /%br
         /  %br
         %h1 
@@ -9,17 +9,8 @@
         %img{src: '/assets/logo.png'}
         %h2 Build Tasks better, together.
         %h3 Slogan & long description project!
-      .span5
-        %ul#myTab.nav.nav-tabs
-          %li.active
-            %a{:href => "#company_up"} Sign up as Company
-          %li
-            %a{:href => "#user_up"} Sign up as User
-        .tab-content
-          #company_up.tab-pane.active
-            = render template: 'devise/registrations/new_company'
-          #user_up.tab-pane
-            = render template: 'devise/registrations/new'
+      .span4
+        = render template: 'devise/registrations/new'
         //= render template: 'devise/sessions/new'
         .clearfix
 .container{style: "margin-top:20px;"}

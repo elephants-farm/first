@@ -36,7 +36,7 @@
   - content_for :right_block do 
     #right-block{style: "position: fixed;right: 0;top: 43px;width: 94px;bottom: 40px;overflow: auto;"}
       / ko if: $root.data_loading()
-      %div{style: "background-size: 33px;background-image: url('/assets/spinner_gray.gif');width: 100px;height: 100px;background-repeat: no-repeat;margin: 0 auto;background-position: center;"}
+      %div{style: "background-size: 33px;background-image: url('/assets/spinner_black.gif');width: 100px;height: 100px;background-repeat: no-repeat;margin: 0 auto;background-position: center;"}
       / /ko
       / ko ifnot: $root.data_loading()
       %ul.nav.nav-pills{"data-bind" => "foreach: $root.employees"}
@@ -52,7 +52,7 @@
   - content_for :left_block do 
     #left-block{style: "position: fixed;left: 0;top: 43px;width: 94px;bottom: 40px;overflow: auto;"}
       / ko if: $root.data_loading()
-      %div{style: "background-size: 33px;background-image: url('/assets/spinner_gray.gif');width: 100px;height: 100px;background-repeat: no-repeat;margin: 0 auto;background-position: center;"}
+      %div{style: "background-size: 33px;background-image: url('/assets/spinner_black.gif');width: 100px;height: 100px;background-repeat: no-repeat;margin: 0 auto;background-position: center;"}
       / /ko
       / ko ifnot: $root.data_loading()
       %ul.nav.nav-pills{"data-bind" => "foreach: $root.tags"}
@@ -63,7 +63,7 @@
       / /ko            
 
   / ko if: $root.data_loading()
-  %div{style: "background-size: 33px;background-image: url('/assets/spinner_gray.gif');width: 100px;height: 100px;background-repeat: no-repeat;margin: 0 auto;background-position: center;"}
+  %div{style: "background-size: 33px;background-image: url('/assets/spinner_black.gif');width: 100px;height: 100px;background-repeat: no-repeat;margin: 0 auto;background-position: center;"}
   / /ko
   / ko ifnot: $root.data_loading()
   %div{"data-bind" => "template: { name: $root.task_state() }"}

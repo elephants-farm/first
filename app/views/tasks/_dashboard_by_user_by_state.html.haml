@@ -4,7 +4,7 @@
       / ko if: taskAttr.status == $parent.task_state && taskAttr.assigned_to_user_id == $parent.employer
       %li
         #task-item
-          %a.thumbnail{href: "#","data-bind" => "click: $root.view_task", style: "background-image: url('/assets/pattern1.png');background-color: #fff;background-repeat: repeat;margin:10px;"}
+          %a.thumbnail.ef-background-gray{href: "#","data-bind" => "click: $root.view_task", style: "margin:10px;"}
             .caption
               .row-fluid
                 .span12                      
