@@ -8,10 +8,29 @@ function ManageProjectsViewModel(){
   
   self.projects = ko.observableArray([]);
 
+  self.new_project = function(project){
+    console.log('load_users');
+    console.log(project);
+    
+  };
+
   self.new_project = function(){
     $('#create-project').modal();    
     self.current_project_state_template('new_project_template');
     self.current_project().clear_all();
+  };
+
+  self.delete_project = function(project){
+    $.ajax({
+        url: "/projects/" + project.id,
+        type: 'DELETE',
+        dataType: "json",
+        success: function(response) {
+          self.load_projects();
+        },
+        failure: function(response) {},
+        error: function(response) {}
+      });
   };
 
   self.create_project = function(){
@@ -32,6 +51,7 @@ function ManageProjectsViewModel(){
           console.log(response);
           self.working(false);
           self.current_project_state_template('new_project_created_meessage_template');
+          self.load_projects();
         },
         failure: function(response) {},
         error: function(response) {
@@ -43,6 +63,7 @@ function ManageProjectsViewModel(){
 
 
   self.init_projects_from_json = function(projects){
+    self.projects([]);
     ko.utils.arrayForEach(projects, function(item) {
       var project = new ProjectViewModel(item);
       self.projects.push(project);

@@ -6,4 +6,25 @@
           %h5{"data-bind" => "text: __attr__().name"}
       .accordion-body.collapse{"data-bind" => "attr: {id: 'project-' + id}"}
         .accordion-inner
-          %span{"data-bind" => "text: __attr__().description"}
+          .tabbable{:style => "margin-bottom: 18px;"}
+            %ul.nav.nav-tabs
+              %li.active
+                %a{"data-toggle" => "tab", "data-bind" => "attr: {href: '#project-summary-' + id}"} Summary
+              %li
+                %a{"data-toggle" => "tab", "data-bind" => "click: $root.load_users, attr: {href: '#project-users-' + id}"} Users
+              %li
+                %a{"data-toggle" => "tab", "data-bind" => "attr: {href: '#project-tags-' + id}"} Tags
+            
+            .tab-content{:style => "padding-bottom: 9px; border-bottom: 1px solid #ddd;"}
+              .tab-pane.active{"data-bind" => "attr: {id: 'project-summary-' + id}"}
+                .row-fluid
+                  .span10
+                    .well
+                      %p{"data-bind" => "text: __attr__().description"}
+                  .span2
+                    .pull-right
+                      = link_to "delete project", "#", class: 'btn btn-mini', "data-bind" => "click: $parent.delete_project"
+              .tab-pane{"data-bind" => "attr: {id: 'project-users-' + id}"}
+                .well
+              .tab-pane{"data-bind" => "attr: {id: 'project-tags-' + id}"}
+                .well

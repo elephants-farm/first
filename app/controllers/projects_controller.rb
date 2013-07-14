@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   
   def index
-    @projects = current_company.projects
+    @projects = current_company.projects.active
     render template: 'external/projects' if request.xhr?
   end 
 
@@ -44,7 +44,16 @@ class ProjectsController < ApplicationController
 
   def edit
   end
-
+  
+  def destroy
+    project = Project.find(params[:id])
+    project.deleted_at = DateTime.now
+    project.save!
+    respond_to do |format|
+      format.json { head :no_content }
+    end
+  end
+  
   def show
     @project = Project.find(params[:id])
     @current_project = @project

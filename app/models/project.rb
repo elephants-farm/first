@@ -1,6 +1,9 @@
 class Project < ActiveRecord::Base
   validates :name, presence: true
   validates :description, presence: true
+  
+  scope :active, -> { where(deleted_at: nil) }
+
   has_many :tasks
 
   has_and_belongs_to_many :users
