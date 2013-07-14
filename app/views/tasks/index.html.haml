@@ -6,8 +6,6 @@
     .navbar-inner
       .container
         %ul.nav
-
-
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %img.img-circle{"data-bind"=> "attr: { src: current_user.avatar.micro }"}  
@@ -16,7 +14,6 @@
             %ul.dropdown-menu
               %li= link_to 'My notes', "#"
              
-
           %li.divider-vertical
           %li= link_to "New task" ,'#', "data-bind" => "click: new_task"
         %ul.nav.pull-right

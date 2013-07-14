@@ -93,6 +93,7 @@ function ManageTasksViewModel(project){
   self.notice = ko.observable();
   self.current_task = ko.observable();
   self.data_loading = ko.observable(false);
+  self.task_submit = ko.observable(false);
 
   self.load_tags = function(){    
     
@@ -116,7 +117,6 @@ function ManageTasksViewModel(project){
       task.load_comments();// debug load after task is opened!!!
       
       task.setup();
-
       self.tasks.push(task);
     });
   };
@@ -134,13 +134,15 @@ function ManageTasksViewModel(project){
     self.task_state('task_index_template');
   };
 
-    self.set_new_status_for_current_task = function(status){
-      self.current_task().TaskAttr().status(status);
-      self.save_task();
-    };
-
+  self.set_new_status_for_current_task = function(status){
+    self.current_task().TaskAttr().status(status);
+    self.save_task();
+  };
 
   self.save_task = function(){
+    if(self.task_submit())
+        return;
+    self.task_submit(true);
     var send_data = {
       id: self.current_task().id,
       taskAttr: ko.toJS(self.current_task().TaskAttr()),
@@ -157,6 +159,7 @@ function ManageTasksViewModel(project){
           self.notice('Updated');
           self.load_tags();
           self.load_projects();
+          self.task_submit(false);
         }
       });
     }else{
@@ -164,21 +167,19 @@ function ManageTasksViewModel(project){
           var task = new TaskViewModel(response);
           task.setup();
           self.tasks.push(task);
-
           self.notice('Saved');
           self.load_tags();
           self.load_projects();
+          self.view_task(task);
+          self.task_submit(false);
       }); 
     }
   };
-
   
   self.new_task = function(){   
     self.current_task(new TaskViewModel(new EmptyTask()));
-
     self.notice(null);
     self.task_state('task_new_template');
-    $('#task-dialog').modal();
   };
   
   self.view_task = function(task){
@@ -186,20 +187,14 @@ function ManageTasksViewModel(project){
     self.current_task(task);
     //self.current_task().load_comments();
     self.task_state('task_show_template');
-
     self.init_fileupload();
-
-
   };
 
   self.init_fileupload = function(){
-
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload();
     // Load existing files:
-    //$.getJSON($('#fileupload').prop('action'), function (files) {
     $.getJSON("/projects/" + self.current_project().id  + "/tasks/" + self.current_task().id + "/fetch_uploads", function (files) {
-      console.log(files);
       var fu = $('#fileupload').data('blueimpFileupload'),template;
       fu._adjustMaxNumberOfFiles(-files.length);
       template = fu._renderDownload(files).appendTo($('#fileupload .files'));
@@ -268,16 +263,4 @@ function ManageTasksViewModel(project){
   self.status_active_codes = [1, 2, 3];
   self.status_to_string  = {1: 'new',2: 'in progress',3: 'complete',4: 'aborted', 5: 'closed'};
 
-  self.close_edit_task = function(task){
-    self.current_task_tab(null);
-    self.refresh();
-  };
-///////////////delete!!!!!!!!!!!?///////////////////////////////////////////////
-  self.refresh = function(){
-    if (self.current_project())
-      self.load_tasks_by_project();
-    else
-      self.load_all_tasks();
-  };
-////////////////////////////////////////////////////////////////////////////
 };
