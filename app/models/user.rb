@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def is?(search_role)
+    return false if role.nil?
     roles_arr = role.split(' ').map { |role| role.to_sym }
     roles_arr.include?(search_role)
   end
