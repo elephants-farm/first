@@ -36,9 +36,14 @@
           .row-fluid
             .span3
               Status
+              %span.label{style: "color: white;", "data-bind" =>"text: $root.status_to_string[current_task().taskAttr.status], style: { background: $root.status_to_color[current_task().taskAttr.status] }"}
             .span9
-              %span{"data-bind" => "text: current_task().taskAttr.status"}
-              = link_to 'Close task','#',"data-bind"=>"click: $root.close_task", class: "btn btn-mini"
+              %div.pull-left{"data-bind" => "foreach: $root.status_active_codes"}
+                / ko if: $data != $parent.current_task().taskAttr.status
+                = link_to "#", "data-bind" =>  "click: $parent.set_new_status_for_current_task" do
+                  %span.label{style: "color: white;", "data-bind" =>"text: $root.status_to_string[$data], style: { background: $root.status_to_color[$data] }"}
+                / /ko
+              %span.pull-right= link_to 'Close task','#',"data-bind"=>"click: $root.close_task", class: "btn btn-mini"
           .row-fluid
             .span3
               Project
@@ -56,13 +61,6 @@
               Finish to time
             .span8
               %span{"data-bind" =>"text: current_task().taskAttr.finish_to_time"}
-            .span1
-              edit
-          .row-fluid
-            .span3
-              Name
-            .span8
-              %span{"data-bind" =>"text: current_task().taskAttr.name"}
             .span1
               edit
           .row-fluid
@@ -88,6 +86,13 @@
               %ul.nav{"data-bind" => "foreach: current_task().tags"}
                 %li
                   %span{"data-bind" => "text: name"}
+            .span1
+              edit
+          .row-fluid
+            .span3
+              Name
+            .span8
+              %span{"data-bind" =>"text: current_task().taskAttr.name"}
             .span1
               edit
           .row-fluid

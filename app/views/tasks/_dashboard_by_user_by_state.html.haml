@@ -17,7 +17,7 @@
                       %strong
                         = "#"
                         %span{"data-bind" =>"text: id"}
-                  .clearfix
+                  .clearfix{style: "word-wrap: break-word;"}
                     %h6{"data-bind" =>"text: taskAttr.name"}
                     %h6{"data-bind" =>"text: taskAttr.dead_line_time"}
                     %h6{"data-bind" =>"text: taskAttr.finish_to_time"}
@@ -26,7 +26,7 @@
                     comments
                     %span{"data-bind" => "text: comments().length"}
                   /comments
-                  %ul{"data-bind" => "foreach: comments"}
+                  %ul{"data-bind" => "foreach: comments", style: "word-wrap: break-word;"}
                     %li
                       %h6
                         %img.img-circle{"data-bind"=> "attr: { src: author.avatar.micro }"}  

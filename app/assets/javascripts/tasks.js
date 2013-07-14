@@ -134,6 +134,11 @@ function ManageTasksViewModel(project){
     self.task_state('task_index_template');
   };
 
+    self.set_new_status_for_current_task = function(status){
+      self.current_task().taskAttr.status = status;
+      self.save_task();
+    };
+
 
   self.save_task = function(){
     var send_data = {
@@ -149,14 +154,14 @@ function ManageTasksViewModel(project){
         type: 'PUT',
         data: send_data,
         success: function(response) {
-          self.notice(response.message);
+          self.notice('Updated');
           self.load_tags();
           self.load_projects();
         }
       });
     }else{
       $.post("/projects/" + self.current_project().id + "/tasks", send_data, function(response) {
-          self.notice(response.message);
+          self.notice('Saved');
           self.load_tags();
           self.load_projects();
       }); 
@@ -231,14 +236,14 @@ function ManageTasksViewModel(project){
     self.task_view_settings().select_tag(data);
     self.load_tasks();
 
-    //self.index();
+    self.index();
   };
 
   self.select_user = function(data){
     self.task_view_settings().select_user(data);
     //self.load_tasks();
 
-    //self.index();
+    self.index();
   };
 
 ///////////////////////////////////////
@@ -256,7 +261,7 @@ function ManageTasksViewModel(project){
   self.priority_to_string  = {1: 'low',2: 'middle',3: 'high',4: 'immediately'};
   self.priority_to_color  = [{id: 4,color: 'rgb(218, 134, 134)'},{id: 3,color: 'rgb(121, 167, 121)'},{id: 2,color: 'rgb(221, 221, 105)'},{id: 1,color: 'rgb(139, 177, 177)'}];
   self.status_to_color  = {1: 'rgb(142, 167, 163)',2: 'rgb(79, 163, 79)',3: 'rgb(92, 70, 112)',4: 'red', 5: 'black'};
-
+  self.status_active_codes = [1, 2, 3, 4];
   self.status_to_string  = {1: 'new',2: 'in progress',3: 'complete',4: 'aborted', 5: 'closed'};
 
   self.close_edit_task = function(task){

@@ -30,11 +30,16 @@ class TasksController < ApplicationController
     params[:taskAttr][:description] =  ActionController::Base.helpers.sanitize(params[:taskAttr][:description], :remove_contents => ['script', 'style'])
     params[:taskAttr][:name] =  ActionController::Base.helpers.sanitize(params[:taskAttr][:name], :remove_contents => ['script', 'style'])
 
-    task = Task.create!(params[:taskAttr])
+    task = Task.new(params[:taskAttr])
     
-    init_common_task_attributes(task)
-    
-    render json: {id: task.id, message: "Saved!"}
+    respond_to do |format|
+      if task.save
+        init_common_task_attributes(task)
+        format.json { render json: task, status: :created, location: @project }
+      else
+        format.json { render json: task.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
@@ -43,13 +48,14 @@ class TasksController < ApplicationController
     params[:taskAttr][:description] =  ActionController::Base.helpers.sanitize(params[:taskAttr][:description], :remove_contents => ['script', 'style'])
     params[:taskAttr][:name] =  ActionController::Base.helpers.sanitize(params[:taskAttr][:name], :remove_contents => ['script', 'style'])
 
-
-    task.update_attributes(params[:taskAttr])
-    
-    
-
-    init_common_task_attributes(task)
-    render json: {id: task.id, message: "Updated!"}
+    respond_to do |format|
+      if task.update_attributes(params[:taskAttr])
+        init_common_task_attributes(task)
+        format.json { head :no_content }
+      else
+        format.json { render json: task.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
 private 
