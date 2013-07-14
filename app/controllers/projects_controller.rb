@@ -38,7 +38,6 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @current_project = @project
-
   end
 
 end
