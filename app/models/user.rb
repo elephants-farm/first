@@ -12,15 +12,16 @@ class User < ActiveRecord::Base
   belongs_to :company
   has_and_belongs_to_many :tasks
 
+  scope :online, lambda{ where("updated_at > ?", 10.minutes.ago) }
   #many roles per user https://github.com/ryanb/cancan/wiki/Role-Based-Authorization
   def admin?
     self.role.to_sym == :admin
   end
 
-  def go_online
-    self.update_attributes(online_at: DateTime.now)
+  def online?
+    updated_at > 10.minutes.ago
   end
-
+  
   def is?(search_role)
     return false if role.nil?
     roles_arr = role.split(' ').map { |role| role.to_sym }
@@ -34,7 +35,7 @@ class User < ActiveRecord::Base
       user.name user_profile.name
       user.surname user_profile.surname
       user.tasks_count tasks.active.count
-      user.online online_at.nil? ? false : (DateTime.now - 5.minutes) <  (online_at + 5.minutes)
+      user.online online?
       user.avatar do |avatar|
         avatar.micro user_profile.avatar.url(:micro) 
         avatar.mini user_profile.avatar.url(:mini) 

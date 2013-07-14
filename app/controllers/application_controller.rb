@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   helper :all
   before_filter :init_user_profile  #!!!! delete move to registrations and create on registration
-  before_filter :make_current_online
+  after_filter :user_activity
   helper_method :current_company
   include ApplicationHelper
 
@@ -46,8 +46,8 @@ class ApplicationController < ActionController::Base
   end
 
 private
-  def make_current_online
-    current_user.go_online if user_signed_in?
+  def user_activity
+    current_user.try :touch
   end
-
+  
 end
