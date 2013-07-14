@@ -30,6 +30,12 @@ function TaskViewModel(task){
 
   self.TaskAttr = ko.observable(new TaskAttr(task));  
 
+  self.setup = function(){
+    self.init_tags();
+    self.init_assigned_to();
+    self.init_assigned_users();
+  };
+
   self.init_assigned_to = function(){
     self.assigned_to(task.assigned_to ? new UserViewModel(task.assigned_to) : null);
   };

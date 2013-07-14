@@ -113,10 +113,10 @@ function ManageTasksViewModel(project){
       if(!task.TaskAttr().assigned_to_user_id)
         self.task_view_settings().unassigned_count_increment();
 
-      task.load_comments();
-      task.init_tags();
-      task.init_assigned_to();
-      task.init_assigned_users();
+      task.load_comments();// debug load after task is opened!!!
+      
+      task.setup();
+
       self.tasks.push(task);
     });
   };
@@ -161,6 +161,10 @@ function ManageTasksViewModel(project){
       });
     }else{
       $.post("/projects/" + self.current_project().id + "/tasks", send_data, function(response) {
+          var task = new TaskViewModel(response);
+          task.setup();
+          self.tasks.push(task);
+
           self.notice('Saved');
           self.load_tags();
           self.load_projects();
