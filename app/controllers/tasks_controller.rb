@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-
+  layout 'tasks_board'
   def index
     @current_project = Project.find(params[:project_id])
   end

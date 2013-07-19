@@ -1,0 +1,22 @@
+!!!
+%html{class: "js inlinesvg"}
+  %head
+    %title
+      elephant farm
+    = javascript_include_tag 'application_manifest'
+    = stylesheet_link_tag 'stylesheets_manifest' 
+    = csrf_meta_tag 
+
+  %body{style: "margin: 0px;overflow: visible;"}
+    = render 'layouts/top_nav'
+
+    .container.white    
+      = yield 
+    = yield :left_block
+    = yield :right_block
+
+    - if current_user
+      :javascript
+        var user_data = #{ current_user.to_builder.target! };
+        var current_user = new UserViewModel(user_data);
+      

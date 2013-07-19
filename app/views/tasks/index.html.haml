@@ -13,9 +13,35 @@
             %input.search-query{:placeholder => "Task", :type => "text"}
         %ul.nav.pull-right
           %li= link_to 'My tasks', '#'
+          
+        %ul.nav.pull-right 
+          %li
+            %input{type: "checkbox", "data-bind" => "checked: $root.task_view_settings().show_unassigned"} show unassigned tasks
+
   = render 'tags'
-  = render 'user_list'
-  
+  /= render 'user_list'
+  / RIGHT BLOCK
+  - content_for :right_block do 
+    #right-block{style: "position: fixed;right: 0;top: 43px;width: 94px;bottom: 40px;overflow-y: scroll;"}
+      %ul.nav.nav-pills{"data-bind" => "foreach: $root.employees"}
+        %li{"data-bind" => "css: { active: $root.task_view_settings().is_user_selected($data) }"}
+          %a{href: "#", "data-bind" => "click: $root.select_user"}
+            %img.img-circle{"data-bind"=> "attr: { src: avatar.micro }"}  
+            %span{"data-bind" => "text: name"}
+            %span{"data-bind" => "text: surname"}
+            %span.label{"data-bind" => "visible: online"}
+              online
+  / LEFT BLOCK
+  - content_for :left_block do 
+    #left-block{style: "position: fixed;left: 0;top: 43px;width: 94px;bottom: 40px;overflow-y: scroll;"}
+      %ul.nav.nav-pills{"data-bind" => "foreach: $root.tags"}
+        %li{"data-bind" => "css: { active: $root.task_view_settings().is_tag_selected($data) }"}
+          %a{href: "#", "data-bind" => "click: $root.select_tag"}
+            %span.label{"data-bind" => "text: tasks_count"}
+            %span{"data-bind" => "text: name"}
+            
+
+   
   %div{"data-bind" => "template: { name: $root.task_state() }"}
 
 %script{:type => "text/html", :id => "task_index_template"}
@@ -51,6 +77,8 @@
     manageTasksViewModel.load_tags();
 
     ko.applyBindings(manageTasksViewModel,$('#tasks')[0]);
+    ko.applyBindings(manageTasksViewModel,$('#right-block')[0]);
+    ko.applyBindings(manageTasksViewModel,$('#left-block')[0]);
     
    
     //window.setInterval(updatefunction, 1000 * 60); // 1 min
