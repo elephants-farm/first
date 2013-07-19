@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   layout 'tasks_board'
+
   def index
     @current_project = Project.find(params[:project_id])
   end
@@ -24,7 +25,10 @@ class TasksController < ApplicationController
     render json: {id: comment.id}
   end
   
-  def create 
+  def create     
+    params[:taskAttr][:description] =  ActionController::Base.helpers.sanitize(params[:taskAttr][:description], :remove_contents => ['script', 'style'])
+    params[:taskAttr][:name] =  ActionController::Base.helpers.sanitize(params[:taskAttr][:name], :remove_contents => ['script', 'style'])
+
     task = Task.create!(params[:taskAttr])
     
     init_common_task_attributes(task)
@@ -34,8 +38,15 @@ class TasksController < ApplicationController
 
   def update
     task = Task.find(params[:id])
+
+    params[:taskAttr][:description] =  ActionController::Base.helpers.sanitize(params[:taskAttr][:description], :remove_contents => ['script', 'style'])
+    params[:taskAttr][:name] =  ActionController::Base.helpers.sanitize(params[:taskAttr][:name], :remove_contents => ['script', 'style'])
+
+
     task.update_attributes(params[:taskAttr])
     
+    
+
     init_common_task_attributes(task)
     render json: {id: task.id, message: "Updated!"}
   end
