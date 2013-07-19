@@ -102,6 +102,22 @@ function ManageTasksViewModel(project){
     });
   };
 
+  self.init_tasks_from_json = function(tasks){
+    self.task_view_settings().unassigned_count(0);
+    ko.utils.arrayForEach(tasks, function(item) {
+      var task = new TaskViewModel(item);
+      
+      if(!task.taskAttr.assigned_to_user_id)
+        self.task_view_settings().unassigned_count_increment();
+
+      task.load_comments();
+      task.init_tags();
+      task.init_assigned_to();
+      task.init_assigned_users();
+      self.tasks.push(task);
+    });
+  };
+
   self.load_tasks = function(){
     $.post("/projects/" + self.current_project().id + "/fetch_tasks", self.task_view_settings().to_js(), function(data) { 
       self.tasks([]);
@@ -142,21 +158,6 @@ function ManageTasksViewModel(project){
     }
   };
 
-  self.init_tasks_from_json = function(tasks){
-    self.task_view_settings().unassigned_count(0);
-    ko.utils.arrayForEach(tasks, function(item) {
-      var task = new TaskViewModel(item);
-      
-      if(!task.taskAttr.assigned_to_user_id)
-        self.task_view_settings().unassigned_count_increment();
-
-      task.load_comments();
-      task.init_tags();
-      task.init_assigned_to();
-      task.init_assigned_users();
-      self.tasks.push(task);
-    });
-  };
   
   self.new_task = function(){   
     self.current_task(new TaskViewModel(new EmptyTask()));

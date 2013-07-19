@@ -13,7 +13,16 @@ class ProjectsController < ApplicationController
 
   def fetch_tasks
     current_project = Project.find(params[:id])
-    @tasks = current_project.tasks.active
+    #TODO RECODE!!!
+    @tasks = []
+    unless params[:selected_tags_ids].blank?
+      params[:selected_tags_ids].each do |tag_id|
+        @tasks << Tag.find(tag_id).tasks.active
+      end      
+    else
+      @tasks = current_project.tasks.active
+    end
+    @tasks.flatten!
     render 'external/tasks'    
   end
 
