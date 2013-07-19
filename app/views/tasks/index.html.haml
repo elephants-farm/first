@@ -34,7 +34,7 @@
   /= render 'user_list'
   / RIGHT BLOCK
   - content_for :right_block do 
-    #right-block{style: "position: fixed;right: 0;top: 43px;width: 94px;bottom: 40px;overflow: auto;background: #fff;"}
+    #right-block{style: "position: fixed;right: 0;top: 43px;width: 94px;bottom: 40px;overflow: auto;"}
       %ul.nav.nav-pills{"data-bind" => "foreach: $root.employees"}
         %li{"data-bind" => "css: { active: $root.task_view_settings().is_user_selected($data) }"}
           %a{href: "#", "data-bind" => "click: $root.select_user"}
@@ -45,7 +45,7 @@
               online
   / LEFT BLOCK
   - content_for :left_block do 
-    #left-block{style: "position: fixed;left: 0;top: 43px;width: 94px;bottom: 40px;overflow: auto;background: #fff;"}
+    #left-block{style: "position: fixed;left: 0;top: 43px;width: 94px;bottom: 40px;overflow: auto;"}
       %ul.nav.nav-pills{"data-bind" => "foreach: $root.tags"}
         %li{"data-bind" => "css: { active: $root.task_view_settings().is_tag_selected($data) }"}
           %a{href: "#", "data-bind" => "click: $root.select_tag"}
