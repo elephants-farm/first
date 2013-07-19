@@ -6,6 +6,18 @@
     .navbar-inner
       .container
         %ul.nav
+
+
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %img.img-circle{"data-bind"=> "attr: { src: current_user.avatar.micro }"}  
+              %span My profile
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to 'My notes', "#"
+             
+
+          %li.divider-vertical
           %li= link_to "New task" ,'#', "data-bind" => "click: new_task"
         %ul.nav.pull-right
           %li.divider-vertical
@@ -13,7 +25,7 @@
             %input.search-query{:placeholder => "Task", :type => "text"}
         %ul.nav.pull-right
           %li= link_to 'My tasks', '#'
-          
+
         %ul.nav.pull-right 
           %li
             %input{type: "checkbox", "data-bind" => "checked: $root.task_view_settings().show_unassigned"} show unassigned tasks
@@ -22,7 +34,7 @@
   /= render 'user_list'
   / RIGHT BLOCK
   - content_for :right_block do 
-    #right-block{style: "position: fixed;right: 0;top: 43px;width: 94px;bottom: 40px;overflow-y: scroll;"}
+    #right-block{style: "position: fixed;right: 0;top: 43px;width: 94px;bottom: 40px;overflow: auto;background: #fff;"}
       %ul.nav.nav-pills{"data-bind" => "foreach: $root.employees"}
         %li{"data-bind" => "css: { active: $root.task_view_settings().is_user_selected($data) }"}
           %a{href: "#", "data-bind" => "click: $root.select_user"}
@@ -33,7 +45,7 @@
               online
   / LEFT BLOCK
   - content_for :left_block do 
-    #left-block{style: "position: fixed;left: 0;top: 43px;width: 94px;bottom: 40px;overflow-y: scroll;"}
+    #left-block{style: "position: fixed;left: 0;top: 43px;width: 94px;bottom: 40px;overflow: auto;background: #fff;"}
       %ul.nav.nav-pills{"data-bind" => "foreach: $root.tags"}
         %li{"data-bind" => "css: { active: $root.task_view_settings().is_tag_selected($data) }"}
           %a{href: "#", "data-bind" => "click: $root.select_tag"}
