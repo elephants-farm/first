@@ -9,15 +9,12 @@ gem 'rails',  '3.2.13'
 gem 'mysql2'
 gem 'paperclip'
 gem 'globalize3'
-gem 'acts_as_tree'
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'thin'
 gem 'geoip'
 gem 'nokogiri'
-gem 'rails-paypal'
-gem 'google-checkout'
 gem 'mini_magick'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -39,6 +36,5 @@ group :assets do
 end
 gem 'sass-rails',           '3.2.6'
 gem 'bootstrap-sass',       '~> 2.3.1.0'
-#Front
 gem "font-awesome-rails"
 gem 'facebox-rails'

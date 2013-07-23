@@ -1,0 +1,29 @@
+
+#create-project.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header.text-center
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h5 NEW PROJECT
+  .modal-body
+    / ko if: current_project_state_template()
+    %div{"data-bind" => "template: { name: current_project_state_template()}"}
+    / /ko
+  
+%script{:type => "text/html", :id => "new_project_created_meessage_template"}
+  %h1 Created
+  
+%script{:type => "text/html", :id => "new_project_template"}
+  .control-group{"data-bind" => "css: {error: current_project().error_by_field('name')} "}
+    .controls
+      %input.input-block-level.error{type: 'text', placeholder: 'name', "data-bind" => "value: current_project().__attr__().name"}
+      / ko if: current_project().error_by_field('name')
+      %span.help-inline{"data-bind" => "text: current_project().error_by_field('name')"}
+      / /ko
+  .control-group{"data-bind" => "css: {error: current_project().error_by_field('description')} "}
+    .controls
+      %textarea.input-block-level{rows: 8, placeholder: 'description', "data-bind" => "value: current_project().__attr__().description"}
+      / ko if: current_project().error_by_field('description')
+      %span.help-inline{"data-bind" => "text: current_project().error_by_field('description')"}
+      / /ko
+  .control-group
+    .controls
+      = link_to 'Create', "#", class: "btn btn-large btn-blue btn-block", "data-bind" => "click: $root.create_project, css: {disabled: $root.working}"

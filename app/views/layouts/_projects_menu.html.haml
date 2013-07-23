@@ -1,7 +1,18 @@
 .nav-collapse.collapse
   %ul.nav
-    - current_company.projects.each do |project|
+    - current_company.projects.first(3).each do |project|
       %li{class: "#{current_project == project ? 'active' : '' }"}
         = link_to [project, :tasks] do
           %span= project.name
           %strong= project.tasks_count
+    - if current_company.projects.count > 3
+      %li.dropdown
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          all
+          %b.caret
+        %ul.dropdown-menu
+          - current_company.projects.last(current_company.projects.count - 3).each do |project|
+            %li
+              = link_to [project, :tasks] do
+                %span= project.name
+                %strong= project.tasks_count

@@ -1,0 +1,9 @@
+#projects-accordion.accordion
+  %div{"data-bind" => "foreach: projects"}
+    .accordion-group
+      .accordion-heading
+        %a.accordion-toggle{"data-parent" => "#projects-accordion", "data-toggle" => "collapse", "data-bind" => "attr: {href: '#project-' + id}"}
+          %h5{"data-bind" => "text: __attr__().name"}
+      .accordion-body.collapse{"data-bind" => "attr: {id: 'project-' + id}"}
+        .accordion-inner
+          %span{"data-bind" => "text: __attr__().description"}

@@ -1,38 +1,27 @@
 = render 'menus/settings', current_item: 'projects'
-
-.well
-  %h4 Projects
-  
-  %p= link_to 'Create', "#create-project", class: 'btn', "data-toggle" => "modal"
-
-  #projects-accordion.accordion
-    - @projects.each do |project|
-      .accordion-group
-        .accordion-heading
-          %a.accordion-toggle{"data-parent" => "#projects-accordion", "data-toggle" => "collapse", :href => "#project-#{project.id}"}
-            %h5= project.name
-        .accordion-body.collapse{id: "project-#{project.id}"}
-          .accordion-inner
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+#projects
+  .well
+    %h4 Projects
+    
+    %p= link_to 'Create', "#create-project", class: 'btn', "data-bind" => "click: new_project"
 
 
-#create-project.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-header.text-center
-    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-    %h5 NEW PROJECT
-  .modal-body
-    .clear-form
-      = form_for(Project.new) do |f|
-        .form-heading
-          
-        .form-body
-          .pair-group
-            = f.text_field :name, :autofocus => true, class: 'input-block-level', placeholder: :name
-            = f.text_area :description, rows: 8,class: 'input-block-level', placeholder: :description
-        .form-footer
-          = link_to 'Create', "#", class: "btn btn-large btn-blue btn-block"
-  
+    / ko if: $root.data_loading()
+    %div{style: "background-size: 33px;background-image: url('/assets/spinner_black.gif');width: 100px;height: 100px;background-repeat: no-repeat;margin: 0 auto;background-position: center;"}
+    / /ko
+    / ko ifnot: $root.data_loading()
+    = render 'index'
+    / /ko
+
+  = render 'new'
+
 :javascript
   $(function(){
     $(".collapse").collapse({toggle: false, parent: '#projects-accordion'});
+
+    var manageProjectsViewModel = new ManageProjectsViewModel();
+    manageProjectsViewModel.load_projects();
+
+    ko.applyBindings(manageProjectsViewModel,$('#projects')[0]);
+
   });

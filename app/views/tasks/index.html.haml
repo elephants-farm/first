@@ -70,10 +70,7 @@
   / /ko
 
 %script{:type => "text/html", :id => "task_index_template"}
-  /- if current_company.id == 1
   = render 'index' 
-  /- else
-  /  = render 'index_old' 
 
 %script{:type => "text/html", :id => "task_edit_template"}
   .well

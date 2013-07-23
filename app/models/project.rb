@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
-  # attr_accessible :title, :body
+  validates :name, presence: true
+  validates :description, presence: true
   has_many :tasks
 
   has_and_belongs_to_many :users

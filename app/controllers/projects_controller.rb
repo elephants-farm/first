@@ -27,6 +27,16 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    @project = Project.new(params[:__attr__].merge(company_id: current_company.id))
+    
+    respond_to do |format|
+      if @project.save
+        format.json { render json: @project.to_builder.target!, status: :created, location: @project }
+      else
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
 
   def new

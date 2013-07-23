@@ -26,5 +26,7 @@
 //= require task
 //= require tag
 //= require tasks
+//= require project
+//= require projects
 
 //= require comment
