@@ -17,8 +17,11 @@
           %a.thumbnail.ef-background-gray{href: "#","data-bind" => "click: $root.view_task", style: "margin:10px;"}
             .caption
               .row-fluid
-                .span12                      
+                .span12             
                   .clearfix
+                    %strong.pull-left{style: "margin-right: 10px;text-decoration: underline;font-size: 16px;"}
+                      %span{"data-bind" => "text: author.name"}
+                      %span{"data-bind" => "text: author.surname"}                     
                     %span.label.pull-left{style: "color: white;", "data-bind" =>"text: $root.status_to_string[TaskAttr().status()], style: { background: $root.status_to_color[TaskAttr().status()] }"}
                     / ko if: TaskAttr().task_type() != 1
                     %span.label.pull-left{style: "margin-left:10px;color: white;", "data-bind" =>"text: $root.task_type_to_string[TaskAttr().task_type()], style: { background: $root.task_type_to_color[TaskAttr().task_type()] }"}
