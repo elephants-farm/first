@@ -134,6 +134,11 @@ function ManageTasksViewModel(project){
     self.task_state('task_index_template');
   };
 
+  self.set_new_task_type_for_current_task = function(data){
+    self.current_task().TaskAttr().task_type(data);
+    self.save_task();
+  };
+
   self.set_new_status_for_current_task = function(status){
     self.current_task().TaskAttr().status(status);
     self.save_task();
@@ -258,6 +263,9 @@ function ManageTasksViewModel(project){
 //    return data;
  // };
 
+  self.task_type_to_string  = {1: 'normal', 5: 'bug', 6: 'critical bug'};
+  self.task_type_active_codes = [1, 5, 6];
+  self.task_type_to_color  = {1: 'rgb(17, 202, 202)', 5: 'rgb(209, 162, 15)', 6: 'rgb(224, 10, 10)'};
   self.priority_to_string  = {1: 'low',2: 'middle',3: 'high',4: 'immediately'};
   self.priority_to_color  = [{id: 4,color: 'rgb(218, 134, 134)'},{id: 3,color: 'rgb(121, 167, 121)'},{id: 2,color: 'rgb(221, 221, 105)'},{id: 1,color: 'rgb(139, 177, 177)'}];
   self.status_to_color  = {1: 'rgb(142, 167, 163)',2: 'rgb(79, 163, 79)',3: 'rgb(92, 70, 112)',4: 'red', 5: 'black'};

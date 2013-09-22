@@ -38,6 +38,7 @@ ElephantFarm::Application.routes.draw do
   end
   
   root to: 'home#index'
+  get :welcome, to: 'home#welcome'
 
   ########################## API #########################
   namespace :api, defaults: {format: 'json'} do

@@ -5,6 +5,7 @@ function TaskAttr(task){
   self.description = task.description;
   self.priority = task.priority;
   self.status = ko.observable(task.status);
+  self.task_type = ko.observable(task.task_type);
   self.creator_user_id = task.author.id;
   self.assigned_to_user_id = task.assigned_to_user_id;
   self.estimate_point = task.estimate_point;
@@ -29,6 +30,10 @@ function TaskViewModel(task){
   self.tags = ko.observableArray([]);
 
   self.TaskAttr = ko.observable(new TaskAttr(task));  
+
+  self.comments_for_dashboard = function(){
+    return (self.comments().length > 3) ? self.comments().slice(0,3) : self.comments;
+  };
 
   self.setup = function(){
     self.init_tags();
@@ -96,6 +101,7 @@ function EmptyTask()  {
   this.description = null;
   this.priority = null;
   this.status = 1;
+  this.task_type = 1;
   this.estimate_point = 0;
   this.price2 = null;
   this.author = current_user;

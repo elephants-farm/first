@@ -3,6 +3,7 @@ json.project_id task.project_id
 json.name task.name
 json.description task.description
 json.priority task.priority
+json.task_type task.task_type
 json.status task.status
     
 json.dead_line_time task.dead_line_time

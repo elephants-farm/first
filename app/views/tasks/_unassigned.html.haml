@@ -1,7 +1,17 @@
+%strong 
+  UNASSIGNED
+  %span{"data-bind" => "text: $root.task_view_settings().unassigned_count()"}
+/.row-fluid
+/  .span4#first-col{style: "border: 1px solid #ddd;min-height: 200px;border-radius: 5px;"}
+/    %div{"data-bind" => "template: { name: 'dashboard_by_state_template', data: {task_state: 1, employer: null} }"}
+/  .span4#second-col.ui-widget-content{style: "border: 1px solid #ddd;min-height: 200px;border-radius: 5px;"}
+/    %div{"data-bind" => "template: { name: 'dashboard_by_state_template', data: {task_state: 2, employer: null} }"}
+/  .span4#third-col{style: "border: 1px solid #ddd;min-height: 200px;border-radius: 5px;"}
+/    %div{"data-bind" => "template: { name: 'dashboard_by_state_template', data: {task_state: 3, employer: null} }"}
 %div
   .row-fluid
     %ul{"data-bind" => "foreach: $root.tasks", style: "width: 100%;padding: 0;margin: 0;"}
-      / ko if: TaskAttr().status() == $parent.task_state && TaskAttr().assigned_to_user_id == $parent.employer
+      / ko if: TaskAttr().assigned_to_user_id == null
       %li
         #task-item
           %a.thumbnail.ef-background-gray{href: "#","data-bind" => "click: $root.view_task", style: "margin:10px;"}
@@ -26,7 +36,7 @@
                     comments
                     %span{"data-bind" => "text: comments().length"}
                   /comments
-                  %ul{"data-bind" => "foreach: comments", style: "word-wrap: break-word;"}
+                  %ul{"data-bind" => "foreach: comments_for_dashboard()", style: "word-wrap: break-word;"}
                     %li
                       %h6
                         %img.img-circle{"data-bind"=> "attr: { src: author.avatar.micro }"}  

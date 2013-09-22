@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   end
 
   def online?
-    updated_at > 10.minutes.ago
+    updated_at > 20.minutes.ago
   end
   
   def is?(search_role)

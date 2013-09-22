@@ -35,6 +35,16 @@
               / /ko
           .row-fluid
             .span3
+              Type
+              %span.label{style: "color: white;", "data-bind" =>"text: $root.task_type_to_string[current_task().TaskAttr().task_type()], style: { background: $root.task_type_to_color[current_task().TaskAttr().task_type()] }"}
+            .span9
+              %div.pull-left{"data-bind" => "foreach: $root.task_type_active_codes"}
+                / ko if: $data != $parent.current_task().TaskAttr().task_type()
+                = link_to "#", "data-bind" =>  "click: $parent.set_new_task_type_for_current_task" do
+                  %span.label{style: "color: white;", "data-bind" =>"text: $root.task_type_to_string[$data], style: { background: $root.task_type_to_color[$data] }"}
+                / /ko
+          .row-fluid
+            .span3
               Status
               %span.label{style: "color: white;", "data-bind" =>"text: $root.status_to_string[current_task().TaskAttr().status()], style: { background: $root.status_to_color[current_task().TaskAttr().status()] }"}
             .span9

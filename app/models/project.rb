@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
   validates :description, presence: true
   
   scope :active, -> { where(deleted_at: nil) }
+  scope :by_weight, -> { order("WEIGHT DESC") }
+
 
   has_many :tasks
 

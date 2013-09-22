@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   TASK_STATUS = {DRAFT: 0, NEW: 1, IN_PROGRESS: 2, COMPLETE: 3, ABORTED: 4, CLOSED: 5}
+  TASK_TYPES = {NORMAL: 0, BUG: 5, CRITICAL_BUG: 6}
 
   scope :active, -> { where("status != #{Task::TASK_STATUS[:CLOSED]}") }
   scope :closed, -> { where(status: Task::TASK_STATUS[:CLOSED]) }

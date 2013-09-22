@@ -42,7 +42,7 @@ class TasksController < ApplicationController
     end
   end
 
-  def update
+  def update 
     task = Task.find(params[:id])
 
     params[:taskAttr][:description] =  ActionController::Base.helpers.sanitize(params[:taskAttr][:description], :remove_contents => ['script', 'style'])

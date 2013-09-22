@@ -12,7 +12,7 @@
           - if devise_mapping.rememberable?
             .row-fluid
               .span1= f.check_box :remember_me
-              .span5= f.label :remember_me
+              .span5 remember_me
         .form-footer
           = f.submit "Sign in", class: "btn btn-large btn-blue btn-block"
 /= render "devise/shared/links"

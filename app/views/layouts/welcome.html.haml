@@ -1,0 +1,30 @@
+!!!
+%html{class: "js inlinesvg"}
+  %head
+    %title
+      elephant farm
+    = javascript_include_tag 'application_manifest'
+    = stylesheet_link_tag 'stylesheets_manifest' 
+    = csrf_meta_tag 
+
+  %body.ef-background-gray{style: "margin: 0px;overflow: visible;"}
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %button{type: "button", class: "btn btn-navbar", "data-toggle" => "collapse", "data-target" => ".nav-collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          .pull-right
+            %ul.nav
+              %li.divider-vertical
+              %li
+                - if current_user
+                  = link_to "SIGN OUT", destroy_user_session_path, :method => :delete 
+                - else
+                  = link_to "SIGN IN", "#login-dialog", "data-toggle" => "modal"
+
+    .container.white    
+      = yield 
+
+    
