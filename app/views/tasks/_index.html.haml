@@ -16,9 +16,9 @@
       %strong
         %span{"data-bind" => "text: name"}
         %span{"data-bind" => "text: surname"}
-        (
-        %span{"data-bind" => "text: tasks_count"}
-        )
+        /(
+        /%span{"data-bind" => "text: tasks_count"}
+        /)
     .row-fluid
       .span4#first-col{style: "border: 1px solid #ddd;min-height: 200px;border-radius: 5px;"}
         %div{"data-bind" => "template: { name: 'dashboard_by_state_template', data: {task_state: 1, employer: id} }"}
