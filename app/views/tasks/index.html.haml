@@ -24,7 +24,7 @@
           %li
             %input{type: "checkbox", "data-bind" => "checked: $root.task_view_settings().show_unassigned"} show unassigned tasks
 
-  = render 'tags'
+  /= render 'tags'
   /= render 'user_list'
   / RIGHT BLOCK
   - content_for :right_block do 
@@ -46,14 +46,14 @@
   - content_for :left_block do 
     #left-block{style: "position: fixed;left: 0;top: 43px;width: 94px;bottom: 40px;overflow: auto;"}
       / ko if: $root.data_loading()
-      %div{style: "background-size: 33px;background-image: url('/assets/spinner_black.gif');width: 100px;height: 100px;background-repeat: no-repeat;margin: 0 auto;background-position: center;"}
+      /%div{style: "background-size: 33px;background-image: url('/assets/spinner_black.gif');width: 100px;height: 100px;background-repeat: no-repeat;margin: 0 auto;background-position: center;"}
       / /ko
       / ko ifnot: $root.data_loading()
-      %ul.nav.nav-pills{"data-bind" => "foreach: $root.tags"}
-        %li{"data-bind" => "css: { active: $root.task_view_settings().is_tag_selected($data) }"}
-          %a{href: "#", "data-bind" => "click: $root.select_tag"}
-            %span.label{"data-bind" => "text: tasks_count"}
-            %span{"data-bind" => "text: name"}
+      /%ul.nav.nav-pills{"data-bind" => "foreach: $root.tags"}
+      /  %li{"data-bind" => "css: { active: $root.task_view_settings().is_tag_selected($data) }"}
+      /    %a{href: "#", "data-bind" => "click: $root.select_tag"}
+      /      %span.label{"data-bind" => "text: tasks_count"}
+      /      %span{"data-bind" => "text: name"}
       / /ko            
 
   / ko if: $root.data_loading()
